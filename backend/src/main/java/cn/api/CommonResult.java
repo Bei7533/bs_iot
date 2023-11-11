@@ -1,5 +1,10 @@
 package cn.api;
 
+import java.util.ArrayList;
+
+import org.hibernate.mapping.List;
+
+import cn.entity.Device;
 import cn.entity.User;
 
 public class CommonResult {
@@ -7,6 +12,8 @@ public class CommonResult {
     private String message;
     private String data;
     private User user;
+    private Device device;
+    private ArrayList<String> stringList;
 
     protected CommonResult() {
     }
@@ -31,6 +38,21 @@ public class CommonResult {
         res.setCode(ResultCode.SUCCESS.getCode());
         res.setMessage(time_str);
         res.setUserInfo(user);
+        return res;
+    }
+
+    public static CommonResult success(Device device) {
+        CommonResult res = new CommonResult();
+        res.setCode(ResultCode.SUCCESS.getCode());
+        res.setDeviceInfo(device);
+        return res;
+    }
+
+    public static CommonResult success(ArrayList<String> deviceList, String device_num) {
+        CommonResult res = new CommonResult();
+        res.setCode(ResultCode.SUCCESS.getCode());
+        res.setMessage(device_num);
+        res.setStringList(deviceList);
         return res;
     }
 
@@ -96,5 +118,21 @@ public class CommonResult {
 
     public void setUserInfo(User user) {
         this.user = user;
+    }
+
+    public Device getDeviceInfo() {
+        return device;
+    }
+
+    public void setDeviceInfo(Device device) {
+        this.device = device;
+    }
+
+    public ArrayList<String> getStringList() {
+        return stringList;
+    }
+
+    public void setStringList(ArrayList<String> deviceList) {
+        this.stringList = deviceList;
     }
 }

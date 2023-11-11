@@ -18,7 +18,26 @@ public class DeviceInfoController {
     @PostMapping(value = "/admin/deviceinfo")
     @CrossOrigin // 后端跨域
     public CommonResult deviceInfo(@RequestBody String username) {
-//        System.out.println("deviceinfo");
+        // System.out.println("deviceinfo");
+        username = username.substring(username.indexOf(":") + 2, username.length() - 2);
         return deviceInfoService.deviceInfo(username);
+    }
+
+    @PostMapping(value = "/admin/deviceinfoedit")
+    @CrossOrigin // 后端跨域
+    public CommonResult deviceInfoEdit(@RequestBody String request) {
+        return deviceInfoService.deviceInfoEdit(request);
+    }
+
+    @PostMapping(value = "/admin/deviceinfoadd")
+    @CrossOrigin // 后端跨域
+    public CommonResult deviceInfoAdd(@RequestBody String request) {
+        return deviceInfoService.deviceInfoAdd(request);
+    }
+
+    @PostMapping(value = "/admin/deviceinfodelete")
+    @CrossOrigin // 后端跨域
+    public CommonResult deviceInfoDelete(@RequestBody String request) {
+        return deviceInfoService.deviceInfoDelete(request);
     }
 }

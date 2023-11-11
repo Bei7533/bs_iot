@@ -45,14 +45,22 @@ public class UserInfoService {
         if (editIndex.equals("1"))
             userMapper.updateEmail(userName, editContent);
         else if (editIndex.equals("2")) {
-            userMapper.updatePassword(userName, editContent);
-            System.out.println("update password");
+            // JSONObject jsonInfo = new JSONObject();
+            // String _userName = java.net.URLEncoder.encode(userName, "UTF-8");
+            // userName = userName.replace("+", "%20");
+            // byte byteUser[] = Base64.encodeBase64(userName.getBytes());
+            // String String_userName = new String(byteUser);
+
+            userMapper.updateUserDescript(userName, editContent);
         } else if (editIndex.equals("0")) {
             if (!userMapper.selectOneCustom(editContent).isEmpty())
                 return CommonResult.failed(ILLEGAL);
             userMapper.updateUsername(userName, editContent);
-//            userMapper.deleteUser(userName);
-        }
+            // userMapper.deleteUser(userName);
+        } else if (editIndex.equals("5")) {
+            userMapper.updatePassword(userName, editContent);
+        } else
+            return CommonResult.failed(VALIDATE_FAILED);
         return CommonResult.success("修改成功");
     }
 }

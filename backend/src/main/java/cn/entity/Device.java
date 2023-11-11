@@ -62,4 +62,18 @@ public class Device {
     public void setCreate_time(String create_time) {
         this.create_time = create_time;
     }
+
+    @Override
+    public String toString() {
+        String time_str = create_time.toString();
+        time_str = time_str.substring(0, time_str.length() - 2);
+        return "Device{" +
+                "device_id=" + device_id +
+                ", user_name=" + user_name +
+                ", device_name=" + device_name +
+                ", device_type=" + device_type +
+                ", device_discript=" + device_discript +
+                ", create_time=" + time_str +
+                '}';
+    }
 }

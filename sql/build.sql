@@ -7,6 +7,7 @@ CREATE TABLE `user`  (
   `password` VARCHAR(64)  NOT NULL COMMENT '密码',
   email VARCHAR(32) NULL DEFAULT NULL COMMENT '邮箱',
   last_login_time DATETIME DEFAULT NULL COMMENT '最近登录时间',
+  user_descript  VARCHAR(128) DEFAULT '编辑信息添加个人描述' COMMENT '用户描述',
   PRIMARY KEY (user_name)
 );
 

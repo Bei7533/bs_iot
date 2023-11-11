@@ -33,6 +33,9 @@ public interface UserMapper extends BaseMapper<User> {
     @Update("UPDATE user SET last_login_time = #{lastLoginTime} WHERE user_name = #{username}")
     void updateLastLoginTime(@Param("username") String username, @Param("lastLoginTime") Timestamp lastLoginTime);
 
+    @Update("UPDATE user SET user_descript = #{userDescript} WHERE user_name = #{username}")
+    void updateUserDescript(@Param("username") String username, @Param("userDescript") String userDescript);
+
     @Delete("DELETE FROM user WHERE user_name = #{username}")
     void deleteUser(@Param("username") String username);
 

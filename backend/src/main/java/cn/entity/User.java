@@ -16,6 +16,7 @@ public class User {
     private String username;
     private String password;
     private Timestamp last_login_time;
+    private String user_descript;
 
     public String getEmail() {
         return email;
@@ -47,5 +48,17 @@ public class User {
 
     public void setLastLoginTime(Timestamp lastLoginTime) {
         this.last_login_time = lastLoginTime;
+    }
+
+    public Timestamp getLast_login_time() {
+        return last_login_time;
+    }
+
+    public String getUser_descript() {
+        return user_descript;
+    }
+
+    public void setUser_descript(String user_descript) {
+        this.user_descript = user_descript;
     }
 }
