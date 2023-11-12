@@ -1,0 +1,12 @@
+{application,emqx_auth_mongodb,
+             [{description,"EMQX MongoDB Authentication and Authorization"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{emqx_auth_mongodb_app,[]}},
+              {applications,[kernel,stdlib,emqx,emqx_auth,emqx_mongodb]},
+              {env,[]},
+              {modules,[emqx_auth_mongodb_app,emqx_auth_mongodb_sup,
+                        emqx_authn_mongodb,emqx_authn_mongodb_schema,
+                        emqx_authz_mongodb,emqx_authz_mongodb_schema]},
+              {licenses,["Apache 2.0"]},
+              {links,[]}]}.

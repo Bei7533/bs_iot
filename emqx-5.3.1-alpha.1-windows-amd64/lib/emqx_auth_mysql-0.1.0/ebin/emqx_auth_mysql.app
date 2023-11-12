@@ -1,0 +1,12 @@
+{application,emqx_auth_mysql,
+             [{description,"EMQX MySQL Authentication and Authorization"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{emqx_auth_mysql_app,[]}},
+              {applications,[kernel,stdlib,emqx,emqx_auth,emqx_mysql]},
+              {env,[]},
+              {modules,[emqx_auth_mysql_app,emqx_auth_mysql_sup,
+                        emqx_authn_mysql,emqx_authn_mysql_schema,
+                        emqx_authz_mysql,emqx_authz_mysql_schema]},
+              {licenses,["Apache 2.0"]},
+              {links,[]}]}.

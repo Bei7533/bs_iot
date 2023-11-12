@@ -1,0 +1,13 @@
+{application,emqx_auth_http,
+             [{description,"EMQX External HTTP API Authentication and Authorization"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{emqx_auth_http_app,[]}},
+              {applications,[kernel,stdlib,emqx_auth,emqx_connector,
+                             emqx_resource]},
+              {env,[]},
+              {modules,[emqx_auth_http_app,emqx_auth_http_sup,emqx_authn_http,
+                        emqx_authn_http_schema,emqx_authz_http,
+                        emqx_authz_http_schema]},
+              {licenses,["Apache 2.0"]},
+              {links,[]}]}.

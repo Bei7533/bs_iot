@@ -1,0 +1,13 @@
+{application,emqx_opentelemetry,
+             [{description,"OpenTelemetry for EMQX Broker"},
+              {vsn,"0.1.2"},
+              {registered,[]},
+              {mod,{emqx_otel_app,[]}},
+              {applications,[kernel,stdlib,emqx]},
+              {env,[]},
+              {modules,[emqx_otel,emqx_otel_api,emqx_otel_app,
+                        emqx_otel_config,emqx_otel_schema,emqx_otel_sup]},
+              {licenses,["Apache 2.0"]},
+              {maintainers,["EMQX Team <contact@emqx.io>"]},
+              {links,[{"Homepage","https://emqx.io/"},
+                      {"Github","https://github.com/emqx/emqx"}]}]}.

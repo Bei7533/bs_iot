@@ -1,0 +1,12 @@
+{application,emqx_auth_postgresql,
+             [{description,"EMQX PostgreSQL Authentication and Authorization"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{emqx_auth_postgresql_app,[]}},
+              {applications,[kernel,stdlib,emqx,emqx_auth,emqx_connector]},
+              {env,[]},
+              {modules,[emqx_auth_postgresql_app,emqx_auth_postgresql_sup,
+                        emqx_authn_postgresql,emqx_authn_postgresql_schema,
+                        emqx_authz_postgresql,emqx_authz_postgresql_schema]},
+              {licenses,["Apache 2.0"]},
+              {links,[]}]}.
