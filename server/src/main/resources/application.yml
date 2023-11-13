@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/IoT?useUnicode=trues&characterEncoding=utf-8
+    username: root
+    password: 02200059b
+
+
+  mqtt:
+    url: tcp://localhost:1883
+    username: admin
+    password: 02200059b
+    clientId: emqx_MDI1Nj
+    timeout: 200
+    keepAlive: 100
+    #    defaultTopic: client/dev/report
+    topics: testapp
+    qos: 1
+
+
+server:
+  port: 8090
