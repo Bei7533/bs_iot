@@ -3,6 +3,10 @@ package com.server.controller;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
+import com.server.mapper.IOTMessageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /**
  * 订阅端 接收消息
  * 1 创建 MqttClient(broker,clientId)
@@ -10,7 +14,11 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  * 3 MqttClient.connect(用户名，密码)
  * 4 MqttClient.subscribe() 订阅主题消息
  */
+
+@Component
 public class MqttServer {
+    @Autowired
+    IOTMessageMapper iotMessageMapper;
 
     public void handleMqtt() throws MqttException {
         System.out.println("Mqtt");
@@ -61,6 +69,7 @@ public class MqttServer {
                     System.out.println("接收消息Qos:" + message.getQos());
                     System.out.println("接收消息内容:" + new String(message.getPayload()));
                     System.out.println();
+                    storeMessage(topic, message);
                 }
 
                 public void deliveryComplete(IMqttDeliveryToken token) {
@@ -85,7 +94,20 @@ public class MqttServer {
         }
     }
 
-//    public static void Main(String[] args) throws MqttException {
-//        handleMqtt();
-//    }
+    public void storeMessage(String topic, MqttMessage message) {
+        // 接收消息内容:{"alert":0,"clientId":"device0003","info":"Device Data 2023/11/13
+        // 22:21:53","lat":30.451956772804262,"lng":119.90936369895935,"timestamp":1699885313447,"value":77}
+        String[] split = payload.split(",");
+        String alert = split[0].substring(9);
+        int alertInt = Integer.parseInt(alert);
+
+        String clientId = split[1].substring(18, split[1].length() - 1);
+        int clientIdInt = Integer.parseInt(clientId);
+
+        String data = split[2].substring(20, split[2].length() - 1);
+        java.sql.Timestamp sqlDate = new java.sql.Timestamp(Long.parseLong(data));
+
+        String deviceTime = split[3];
+        iotMessageMapper.insertMessage(topic, deviceName, deviceType, deviceValue, deviceTime);
+    }
 }

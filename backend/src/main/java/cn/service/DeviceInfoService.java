@@ -56,10 +56,10 @@ public class DeviceInfoService {
         String device_name = requestList[1].substring(requestList[1].indexOf(":") + 2, requestList[1].length() - 1);
         String device_type = requestList[2].substring(requestList[2].indexOf(":") + 2, requestList[2].length() - 1);
         String device_disc = requestList[3].substring(requestList[3].indexOf(":") + 2, requestList[3].length() - 2);
-        System.out.println(username);
-        System.out.println(device_name);
-        System.out.println(device_type);
-        System.out.println(device_disc);
+//        System.out.println(username);
+//        System.out.println(device_name);
+//        System.out.println(device_type);
+//        System.out.println(device_disc);
         deviceMapper.insertDevice(device_name, device_type, device_disc, username);
         ArrayList<Device> deviceList = deviceMapper.selectDevicesByUsername(username);
         Device new_device = deviceList.get(deviceList.size() - 1);
