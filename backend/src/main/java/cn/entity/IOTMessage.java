@@ -1,5 +1,7 @@
 package cn.entity;
 
+import java.sql.Timestamp;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,10 +13,6 @@ public class IOTMessage {
     private Long log_id;
 
     private String device_id;
-    // 上报信息
-    private String info;
-    // 设备数据
-    private int value;
     // 是否告警，0-正常，1-告警
     private int alert;
     // 设备位置，纬度
@@ -22,7 +20,7 @@ public class IOTMessage {
     // 设备位置，经度
     private double lng;
     // 上报时间，ms
-    private long timestamp;
+    private Timestamp log_time;
 
     public String getDevice_id() {
         return device_id;
@@ -30,22 +28,6 @@ public class IOTMessage {
 
     public void setDevice_id(String device_id) {
         this.device_id = device_id;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     public int getAlert() {
@@ -72,11 +54,11 @@ public class IOTMessage {
         this.lng = lng;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public Timestamp getTimestamp() {
+        return log_time;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(Timestamp timestamp) {
+        this.log_time = timestamp;
     }
 }
