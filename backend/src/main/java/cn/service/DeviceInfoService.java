@@ -23,7 +23,7 @@ public class DeviceInfoService {
     public CommonResult deviceInfo(String username) {
         ArrayList<Device> deviceList = deviceMapper.selectDevicesByUsername(username);
         Integer deviceNum = deviceList.size();
-        ArrayList<String> deviceStrList = new ArrayList<String>();
+        ArrayList<String> deviceStrList = new ArrayList<String>();      
         for (Device device : deviceList) {
             deviceStrList.add(device.toString());
         }

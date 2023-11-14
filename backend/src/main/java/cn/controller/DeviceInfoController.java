@@ -3,6 +3,8 @@ package cn.controller;
 import cn.api.CommonResult;
 import cn.entity.IOTMessage;
 import cn.service.DeviceInfoService;
+import cn.service.MessageService;
+import jakarta.mail.Message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeviceInfoController {
     @Autowired
     DeviceInfoService deviceInfoService;
+
+    @Autowired
+    MessageService messageService;
 
     @PostMapping(value = "/admin/deviceinfo")
     @CrossOrigin // 后端跨域
@@ -39,5 +44,11 @@ public class DeviceInfoController {
     @CrossOrigin // 后端跨域
     public CommonResult deviceInfoDelete(@RequestBody String request) {
         return deviceInfoService.deviceInfoDelete(request);
+    }
+
+    @PostMapping(value = "/admin/devicemessage")
+    @CrossOrigin // 后端跨域
+    public CommonResult deviceMessage(@RequestBody String request) {
+        return messageService.deviceMessage(request);
     }
 }

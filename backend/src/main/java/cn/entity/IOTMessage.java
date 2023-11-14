@@ -11,14 +11,13 @@ import jakarta.persistence.Id;
 public class IOTMessage {
     @Id
     private Long log_id;
-
     private String device_id;
     // 是否告警，0-正常，1-告警
     private int alert;
     // 设备位置，纬度
-    private double lat;
+    private float lat;
     // 设备位置，经度
-    private double lng;
+    private float lng;
     // 上报时间，ms
     private Timestamp log_time;
 
@@ -38,19 +37,19 @@ public class IOTMessage {
         this.alert = alert;
     }
 
-    public double getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 
-    public double getLng() {
+    public float getLng() {
         return lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(float lng) {
         this.lng = lng;
     }
 
@@ -60,5 +59,11 @@ public class IOTMessage {
 
     public void setTimestamp(Timestamp timestamp) {
         this.log_time = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "{device_id:" + device_id + ",alert:" + alert + ",lat:" + lat + ",lng:"
+                + lng + ",log_time:" + log_time + "}";
     }
 }

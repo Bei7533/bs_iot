@@ -13,30 +13,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import org.springframework.context.ApplicationContext;
 
-/**
- * 订阅端 接收消息
- * 1 创建 MqttClient(broker,clientId)
- * 2 MqttClient.setCallback(new MqttCallback() {}) 设置回调函数
- * 3 MqttClient.connect(用户名，密码)
- * 4 MqttClient.subscribe() 订阅主题消息
- */
-
 @Component
 public class MqttServer implements ApplicationContextAware {
     @Autowired
     IOTMessageMapper iotMessageMapper;
-
-//    private final ApplicationContext context;
-//
-//    @Autowired
-//    public MqttServer(ApplicationContext context) {
-//        this.context = context;
-//    }
-//
-//    private IOTMessageMapper getIOTMessageMapper() {
-//        return context.getBean(IOTMessageMapper.class);
-//    }
     protected static ApplicationContext applicationContext ;
+
     @Override
     public void setApplicationContext(ApplicationContext arg0) throws BeansException {
         if (applicationContext == null) {
@@ -151,15 +133,8 @@ public class MqttServer implements ApplicationContextAware {
         String lng = split[4].substring(6);
         float lngFloat = Float.parseFloat(lng);
 
-        System.out.println("alert:" + alertInt);
-        System.out.println("clientId:" + clientIdInt);
-        System.out.println("deviceTime:" + sqlDate);
-        System.out.println("lat:" + latFloat);
-        System.out.println("lng:" + lngFloat);
         try {
-            // ... 你原来的代码 ...
             if (iotMessageMapper == null) {
-                // 如果 iotMessageMapper 为 null，则尝试手动获取一次
                 iotMessageMapper = applicationContext.getBean(IOTMessageMapper.class);
             }
             iotMessageMapper.insertMessage(clientIdInt, alertInt, latFloat, lngFloat, sqlDate);
@@ -168,7 +143,5 @@ public class MqttServer implements ApplicationContextAware {
             e.printStackTrace();
             System.err.println("Failed to store message to the database.");
         }
-        // iotMessageMapper.insertMessage(clientIdInt, alertInt, latFloat, lngFloat,
-        // sqlDate);
     }
 }
