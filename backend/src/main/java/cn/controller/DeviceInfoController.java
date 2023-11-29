@@ -51,4 +51,12 @@ public class DeviceInfoController {
     public CommonResult deviceMessage(@RequestBody String request) {
         return messageService.deviceMessage(request);
     }
+
+    @PostMapping(value = "/admin/datemessage")
+    @CrossOrigin // 后端跨域
+    public CommonResult dateMessage(@RequestBody String username) {
+        username = username.substring(username.indexOf(":") + 2, username.length() - 2);
+        return messageService.dateMessage(username);
+    }
+
 }

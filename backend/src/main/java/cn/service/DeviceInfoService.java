@@ -23,7 +23,7 @@ public class DeviceInfoService {
     public CommonResult deviceInfo(String username) {
         ArrayList<Device> deviceList = deviceMapper.selectDevicesByUsername(username);
         Integer deviceNum = deviceList.size();
-        ArrayList<String> deviceStrList = new ArrayList<String>();      
+        ArrayList<String> deviceStrList = new ArrayList<String>();
         for (Device device : deviceList) {
             deviceStrList.add(device.toString());
         }
@@ -31,7 +31,7 @@ public class DeviceInfoService {
     }
 
     public CommonResult deviceInfoEdit(String request) {
-        System.out.println(request);
+//        System.out.println(request);
         String[] requestList = request.split(",");
         int device_id = Integer
                 .parseInt(requestList[0].substring(requestList[0].indexOf(":") + 2, requestList[0].length() - 1));
@@ -49,7 +49,7 @@ public class DeviceInfoService {
     }
 
     public CommonResult deviceInfoAdd(String request) {
-        System.out.println(request);
+//        System.out.println(request);
         String[] requestList = request.split(",");
         // {"username":"beiiii","device_name":"1111","device_type":"mobile_phone","device_discript":"22222"}
         String username = requestList[0].substring(requestList[0].indexOf(":") + 2, requestList[0].length() - 1);

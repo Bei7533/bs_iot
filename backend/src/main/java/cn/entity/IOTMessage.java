@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 
 @TableName(value = "IOTMessage")
 @Entity
-public class IOTMessage {
+public class IOTMessage implements Comparable<IOTMessage> {
     @Id
     private Long log_id;
     private String device_id;
@@ -65,5 +65,10 @@ public class IOTMessage {
     public String toString() {
         return "{device_id:" + device_id + ",alert:" + alert + ",lat:" + lat + ",lng:"
                 + lng + ",log_time:" + log_time + "}";
+    }
+
+    @Override
+    public int compareTo(IOTMessage other) {
+        return -this.log_time.compareTo(other.log_time);
     }
 }

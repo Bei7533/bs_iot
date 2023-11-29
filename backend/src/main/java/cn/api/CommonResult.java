@@ -56,6 +56,14 @@ public class CommonResult {
         return res;
     }
 
+    public static CommonResult success(ArrayList<String> messageList, String device_num, String online) {
+        CommonResult res = new CommonResult();
+        res.setCode(ResultCode.SUCCESS.getCode());
+        res.setMessage(device_num);
+        res.setData(online);
+        res.setStringList(messageList);
+        return res;
+    }
     // 登录失败
     public static CommonResult failed(IErrorCode errorCode) {
         return new CommonResult(errorCode.getCode(), errorCode.getMessage(), null);
