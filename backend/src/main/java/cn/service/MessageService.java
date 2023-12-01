@@ -78,20 +78,12 @@ public class MessageService {
         return (int) timeDifference;
     }
 
-    public CommonResult dateMessage(String username) {
-        ArrayList<Device> deviceList = deviceMapper.selectDevicesByUsername(username);
-        Integer deviceNum = deviceList.size();
-        ArrayList<IOTMessage> messageList = new ArrayList<IOTMessage>();
-        for (Device d : deviceList) {
-            messageList.addAll(iotMessageMapper.selectMessageByDeviceId(d.getDevice_id()));
-        }
+    public CommonResult messageNum(ArrayList<IOTMessage> messageList) {
         Collections.sort(messageList);
-        int weekEnd = messageList.size() - 1;
         TreeMap<String, Integer> dateMessageMap = new TreeMap<String, Integer>();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime currentTime = LocalDateTime.now();
-        String today = currentTime.format(dateFormat);
-        today = today.substring(0, today.indexOf(" "));
+
         for (IOTMessage m : messageList) {
             // 获取log_time
             String logTimeString = m.getTimestamp().toString();
@@ -99,9 +91,7 @@ public class MessageService {
             try {
                 LocalDateTime logTime = m.getTimestamp().toLocalDateTime();
                 int timeDifference = timeDifference(logTime);
-//                System.out.println(timeDifference);
                 if (timeDifference >= 7) {
-                    weekEnd = messageList.indexOf(m);
                     break;
                 }
                 String date = logTimeString.substring(0, logTimeString.indexOf(" "));
@@ -114,21 +104,38 @@ public class MessageService {
                 e.printStackTrace();
             }
         }
-
-        ArrayList<String> messageStrList = new ArrayList<String>();
         for (int i = 0; i < 7; i++) {
             String date = currentTime.minusDays(i).format(dateFormat);
             date = date.substring(0, date.indexOf(" "));
             if (!dateMessageMap.containsKey(date)) {
                 dateMessageMap.put(date, 0);
+//                System.out.println("1111");
+            }else {
+                dateMessageMap.put(date, dateMessageMap.get(date));
             }
         }
-
+        ArrayList<String> messageStrList = new ArrayList<String>();
         for (String date : dateMessageMap.keySet()) {
             messageStrList.add(date + ":" + dateMessageMap.get(date));
 //            System.out.println(date + ":" + dateMessageMap.get(date));
         }
         return CommonResult.success(messageStrList, "7");
+    }
+
+    public CommonResult deviceMessageNum(String device_id){
+        System.out.println(device_id);
+        ArrayList<IOTMessage> messageList = iotMessageMapper.selectMessageByDeviceId(Integer.parseInt(device_id));
+
+        return messageNum(messageList);
+    }
+
+    public CommonResult dateMessage(String username) {
+        ArrayList<Device> deviceList = deviceMapper.selectDevicesByUsername(username);
+        ArrayList<IOTMessage> messageList = new ArrayList<IOTMessage>();
+        for (Device d : deviceList) {
+            messageList.addAll(iotMessageMapper.selectMessageByDeviceId(d.getDevice_id()));
+        }
+        return messageNum(messageList);
     }
 
 }
