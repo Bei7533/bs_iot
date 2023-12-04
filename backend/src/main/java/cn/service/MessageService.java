@@ -45,6 +45,8 @@ public class MessageService {
         String logTimeString = latestMessage.getTimestamp().toString();
         // 将log_time转换为Date对象
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        System.out.println(logTimeString);
+
         try {
             Date logTime = dateFormat.parse(logTimeString);
             // 获取当前时间
@@ -52,9 +54,11 @@ public class MessageService {
             // 计算时间差，单位为毫秒
             long timeDifference = currentTime.getTime() - logTime.getTime();
             // 判断时间差是否在两分钟以内
+//            System.out.println(timeDifference);
+
             if (timeDifference <= 2 * 60 * 1000) {
                 online = "true";
-                // System.out.println("设备在线");
+//                 System.out.println("设备在线");
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -123,7 +127,7 @@ public class MessageService {
     }
 
     public CommonResult deviceMessageNum(String device_id){
-        System.out.println(device_id);
+//        System.out.println(device_id);
         ArrayList<IOTMessage> messageList = iotMessageMapper.selectMessageByDeviceId(Integer.parseInt(device_id));
 
         return messageNum(messageList);

@@ -4,7 +4,7 @@ import cn.api.CommonResult;
 import cn.entity.IOTMessage;
 import cn.service.DeviceInfoService;
 import cn.service.MessageService;
-import jakarta.mail.Message;
+//import jakarta.mail.Message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
