@@ -2,13 +2,13 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/IoT?useUnicode=trues&characterEncoding=utf-8
-    username: root
+    username: root  #这里设置你的数据库用户名、密码
     password: 02200059b
 
 
   mqtt:
     url: tcp://localhost:1883
-    username: admin
+    username: admin #设置你的用户名、密码
     password: 02200059b
     clientId: emqx_MDI1Nj
     timeout: 200
@@ -16,7 +16,3 @@ spring:
     #    defaultTopic: client/dev/report
     topics: testapp
     qos: 1
-
-
-server:
-  port: 8090

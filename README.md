@@ -7,8 +7,8 @@ ZJU 2023 B/S project
 ##### 1 后端服务
 
 1. 打开 `backend/src/main/resources/application.yml` 文件，配置数据库连接信息，包括数据库URL、用户名和密码。
-2. 如果使用了 MQTT 服务器，确保在配置文件中正确设置 MQTT 服务器的地址和端口。
-3. 在项目根目录下，打开命令行终端。如果没有安装mvn需要进行安装
+2. 运行`database_build`目录下的sql文件新建数据库和表格。
+3. 在项目根目录下，打开命令行终端。如果没有安装mvn需要进行安装：
 
 ~~~shell
  mvn install
@@ -42,3 +42,9 @@ java -jar backend-0.0.1-SNAPSHOT.jar
 ##### 3 网站访问
 
 1. 打开的浏览器，并访问 [http://localhost:8080](http://localhost:8080/)，现在可以使用物联网设备管理网站了
+
+##### 4 服务器部署
+
+1.  打开 `server/src/main/resources/application.yml` 文件
+   1. 配置数据库连接信息，包括数据库URL、用户名和密码。
+   2. 配置mqtt服务器连接信息，包括设置自己的用户名和密码。
