@@ -2,7 +2,7 @@
 
 ZJU 2023 B/S project
 
-这个版本没事实现dockers部署
+这个版本没有实现docker部署
 
 ### 安装和部署
 
